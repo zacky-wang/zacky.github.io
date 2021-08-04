@@ -92,11 +92,26 @@ $header-padding: 20px 20px !default;
   font-display: swap;
 }
 
+// Font family: Permanent
+@font-face {
+  font-family: 'Permanent';
+  //src: url('../fonts/chancery/apple-chancery-webfont.eot');
+  //src: local('Apple Chancery'), url('../fonts/chancery/apple-chancery-webfont.eot?#iefix') format('embedded-opentype'),
+  //url('../fonts/chancery/apple-chancery-webfont.woff2') format('woff2'),
+  src: url('../fonts/permanent/PermanentMarker-Regular.woff') format('woff'),
+  url('../fonts/permanent/PermanentMarker-Regular.ttf') format('truetype'),
+  url('../fonts/permanent/PermanentMarker-Regular.svg') format('svg');
+  //font-weight: lighter;
+  //font-style: normal;
+  //font-display: swap;
+}
+
 // Font size of the logo.
 $logo-font-size: 48px !default;
 
 // Font family of the logo.
-$logo-font-family: 'Chancery', cursive, LiSu, sans-serif !default;
+//$logo-font-family: 'Chancery', cursive, LiSu, sans-serif !default;
+$logo-font-family: 'Permanent', sans-serif !default;
 
 // Margin of menu item.
 $menu-item-margin-left: 10px !default;

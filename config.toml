@@ -1,6 +1,6 @@
-baseURL = "https://jaswine.com/blog"
+baseURL = "http://jaswine.com/blog/"
 languageCode = "en-us"
-title = "Jaswine™"
+title = "Jaswine • Blog"
 
 defaultContentLanguage = "en"
 showLanguageSelector = true
@@ -18,7 +18,7 @@ pygmentsCodefencesGuessSyntax = true
 
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
 paginate = 5                                              # 首页每页显示的文章数
-disqusShortname = ""      # disqus_shortname
+disqusShortname = "Jaswine"      # disqus_shortname
 googleAnalytics = ""      # UA-XXXXXXXX-X
 copyright = ""            # default: author.name ↓        # 默认为下面配置的author.name ↓
 
@@ -185,8 +185,8 @@ copyright = ""            # default: author.name ↓        # 默认为下面配
 
   [params.reward]                                         # 文章打赏
     enable = true
-    wechat = "./static/payment_wechat.jpg"           # 微信二维码
-    alipay = "./static/payment_alipay.jpg"           # 支付宝二维码
+    wechat = "https://j-blogs.oss-cn-shanghai.aliyuncs.com/commons/wechatpay.png"           # 微信二维码
+    alipay = "https://j-blogs.oss-cn-shanghai.aliyuncs.com/commons/alipay.png"           # 支付宝二维码
 
   [params.social]                                         # 社交链接
     a-email = "mailto:yuanzhi_wang@163.com"
