@@ -1,13 +1,16 @@
 ---
-title: "买房小计"
-date: 2017-09-23T10:37:56+08:00
-lastmod: 2017-09-24T01:37:56+08:00
+title: "布隆过滤器(Bloom Filter)原理及其使用"
+date: 2021-08-18T10:37:56+08:00
+lastmod: 2021-08-18T10:37:56+08:00
 draft: false
-tags: ["GIS", "HASH"]
-categories: ["GIS"]
+tags: ["Redis", "Bloom Filter"]
+categories: ["Redis"]
 author: "Jaswine"
 
-contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
+weight: 10
+contentCopyright: MIT
+mathjax: true
+autoCollapseToc: true
 
 ---
 

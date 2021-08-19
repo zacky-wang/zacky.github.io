@@ -32,16 +32,9 @@ If you have any questions ,you can contact me by the E-Mail or WeChat.
 
 ## 联系方式(Contact Info):
 
-- E-mail
-    - yuanzhi_wang@163.com
+- E-mail   
     - jaswine@163.com
     - wangyuanzhi1993@gmail.com
 
 - 微信(WeChat):Secrets-li
 
-## 支持我(Donate Me)
-
-如果你有所得，可以捐赠鼓励一下。
-
-微信(WeChat)
-支付宝(AliPay)
