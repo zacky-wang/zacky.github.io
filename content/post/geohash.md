@@ -7,8 +7,6 @@ tags: ["GIS", "HASH"]
 categories: ["GIS"]
 author: "Jaswine"
 
-contentCopyright: '<a rel="license noopener" href="https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License" target="_blank">Creative Commons Attribution-ShareAlike License</a>'
-
 ---
 
 > 在项目中有一个需求查询最近的事件点信息，事件点位信息非常多，使用传统计算方式非常的耗时，Google之后找打GeoHash算法，非常好，记录一下

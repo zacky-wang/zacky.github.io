@@ -1,6 +1,14 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-draft: true
+lastmod: {{ .Date }}
+draft: false
+tags: [""]
+categories : [""]
+author: "Jaswine"
+
+weight:
+mathjax: true
+autoCollapseToc: true
 ---
 
