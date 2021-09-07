@@ -1,10 +1,10 @@
 ---
-title: "「环球度假区」项目沉淀 - 软件生命周期管理"
+title: "「北京环球度假区」项目沉淀 - 软件生命周期管理"
 date: 2021-08-30T18:37:41+08:00
 lastmod: 2021-08-30T18:37:41+08:00
 draft: false
-tags: ["项目管理"]
-categories : ["项目管理"]
+tags: ["Project Manage"]
+categories : ["Project Manage"]
 
 
 weight:
