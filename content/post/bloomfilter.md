@@ -91,13 +91,132 @@ autoCollapseToc: true
 
 # 三、实现
 
-首先来解决两个
+首先来解决实现方法问题，最后到底是用什么语言，什么技术去实现都是细枝末节的东西了，所以对于布隆过滤器的需求可以简单的描述为：
 
-因为我主要做`Java`开发，所以实现的方案选择我这边一般常用的`Redis`和Google提供的`Guava`的方案。
+我想存放n个元素到布隆过滤器中，并且我希望误判率在p，那么我去实现的时候，我的数组大小要多大？我要经过几次hash计算？
+
+ok，这就变成了一个数学题。
+
+// TODO 数学证明过程
 
 ## 3.1.Redis实现
 
 ## 3.2.Guava实现
+
+### 3.2.1.创建布隆过滤器
+
+`Guava`创建布隆过滤器的过程如下图，其中最重要的两步就是 _**计算数组的最佳长度**_ 和 _**计算最佳的Hash函数个数**_。
+
+![](http://www-jaswine.oss-cn-shanghai.aliyuncs.com/Site/blog/bloom_filter/Guava%20init.png)
+
+- 计算数组的最佳长度
+
+$$ length = - \frac{n•ln p} {(ln 2)^2}. $$
+
+> 其中:
+> 
+> n : 预计盛放元素个数
+> 
+> p : 期望误判率 
+
+- 计算最佳的hash函数个数
+
+$$ num = \frac{m • ln 2} {n}. $$
+
+> 其中:
+>
+> m : 数组的长度
+>
+> n : 预计盛放元素个数
+ 
+其中数组的实现就是一个Long的数组，这个数组是线程安全的，实现的原理就是`Java`中的原子类(本质就是CAS)。
+
+```java
+static final class LockFreeBitArray {
+    private static final int LONG_ADDRESSABLE_BITS = 6;
+    final AtomicLongArray data;
+    private final LongAddable bitCount;
+
+    LockFreeBitArray(long bits) {
+      checkArgument(bits > 0, "data length is zero!");
+      // Avoid delegating to this(long[]), since AtomicLongArray(long[]) will clone its input and
+      // thus double memory usage.
+      this.data =
+          new AtomicLongArray(Ints.checkedCast(LongMath.divide(bits, 64, RoundingMode.CEILING)));
+      this.bitCount = LongAddables.create();
+    }
+    
+    // 省略了方法
+}    
+```
+
+### 3.2.2. put元素
+
+```java
+/**
+ * 添加元素到布隆过滤器中 
+ *
+ * @param object 元素
+ * @param funnel 转换器
+ * @param numHashFunctions  hash函数的个数
+ * @param bits 数组
+ * @return boolean 是否put成功
+ */
+ public <T extends @Nullable Object> boolean put(T object,Funnel<? super T> funnel,int numHashFunctions,LockFreeBitArray bits) {
+      long bitSize = bits.bitSize();
+      byte[] bytes = Hashing.murmur3_128().hashObject(object, funnel).getBytesInternal();
+      long hash1 = lowerEight(bytes);
+      long hash2 = upperEight(bytes);
+
+      boolean bitsChanged = false;
+      long combinedHash = hash1;
+      for (int i = 0; i < numHashFunctions; i++) {
+        // Make the combined hash positive and indexable
+        bitsChanged |= bits.set((combinedHash & Long.MAX_VALUE) % bitSize);
+        combinedHash += hash2;
+      }
+      return bitsChanged;
+    }
+```
+
+### 3.2.3.判断元素是否存在
+
+```java
+    /**
+     * 判断元素是否存在
+     *
+     * @param object 元素
+     * @param funnel 转换器
+     * @param numHashFunctions hash函数个数
+     * @param bits 数组
+     * @return boolean 是否存在
+     */
+    @Override
+    public <T extends @Nullable Object> boolean mightContain(
+        @ParametricNullness T object,
+        Funnel<? super T> funnel,
+        int numHashFunctions,
+        LockFreeBitArray bits) {
+      long bitSize = bits.bitSize();
+      byte[] bytes = Hashing.murmur3_128().hashObject(object, funnel).getBytesInternal();
+      long hash1 = lowerEight(bytes);
+      long hash2 = upperEight(bytes);
+
+      long combinedHash = hash1;
+      for (int i = 0; i < numHashFunctions; i++) {
+        // Make the combined hash positive and indexable
+        if (!bits.get((combinedHash & Long.MAX_VALUE) % bitSize)) {
+          return false;
+        }
+        combinedHash += hash2;
+      }
+      return true;
+    }
+```
+
+// TODO
+- Guava的设计有什么精妙的地方
+
 
 ---
 
