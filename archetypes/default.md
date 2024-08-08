@@ -2,10 +2,10 @@
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 lastmod: {{ .Date }}
-draft: false
+draft: true
 tags: [""]
 categories : [""]
-author: "Jaswine"
+author: "zacky"
 
 weight:
 mathjax: true

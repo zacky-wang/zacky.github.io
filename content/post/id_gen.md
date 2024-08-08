@@ -12,3 +12,5 @@ mathjax: true
 autoCollapseToc: true
 ---
 
+[这是隐藏的](http://localhost:1313/blog/post/db_tool/) {:target="_blank"}
+[啊啊啊啊](guide.md)

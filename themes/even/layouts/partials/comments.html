@@ -1,6 +1,6 @@
 {{ if and .IsPage (ne .Params.comment false) -}}
   <!-- Disqus -->
-  {{- if .Site.DisqusShortname -}}
+  <!-- {{- if .Site.DisqusShortname -}}
     <div id="disqus_thread"></div>
     <script type="text/javascript">
     (function() {
@@ -15,7 +15,7 @@
     })();
     </script>
     <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  {{- end -}}
+  {{- end -}} -->
 
   <!-- changyan -->
   {{- if and .Site.Params.changyanAppid .Site.Params.changyanAppkey -}}
